@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    //this table for adding employees and to promote employees to admin or authorizer
     public function up(): void
     {
         Schema::create('promote_admins', function (Blueprint $table) {
