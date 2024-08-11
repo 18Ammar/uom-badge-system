@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class promoteAdmin extends Model
+class Employee extends Model
 {
     use HasFactory;
     protected $fillable = [

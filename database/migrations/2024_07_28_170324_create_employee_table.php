@@ -9,7 +9,7 @@ return new class extends Migration
     //this table for adding employees and to promote employees to admin or authorizer
     public function up(): void
     {
-        Schema::create('promote_admins', function (Blueprint $table) {
+        Schema::create('employee', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->string('name');
@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('mobile_number');
             $table->string('personal_photo');
             $table->string('authorization_document')->nullable();
-            $table->boolean('is_admin')->default(false);
-            $table->boolean('is_employee')->default(false);
+            $table->enum('employee_type', ['authorize', 'admin']);
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

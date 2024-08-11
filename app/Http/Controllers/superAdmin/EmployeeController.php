@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\superAdmin;
 
-use App\Models\promoteAdmin;
+use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Storage;
 class PromoteAdminController extends Controller
 {
    
-    protected $promoteAdmin;
-    public function __construct(promoteAdmin $promoteAdmin)
+    protected $employee;
+    public function __construct(Employee $employee)
     {
-        $this->promoteAdmin = $promoteAdmin;         
+        $this->employee = $employee;         
     }
     public function index()
     {
-        $promoteAdmins = $this->promoteAdmin->all();
-        return response()->json($promoteAdmins);
+        $employees = $this->employee->all();
+        return response()->json($employees);
       
     }
 
@@ -48,18 +48,18 @@ class PromoteAdminController extends Controller
             $user->assignRole('authorize');
         }
         $validatedData['employee_id'] = $user->id;
-        $promoteAdmin = $this->promoteAdmin->create($validatedData);
-        return response()->json($promoteAdmin, 201);
+        $employees = $this->employee->create($validatedData);
+        return response()->json($employees, 201);
     }
 
 
-    public function show(promoteAdmin $promoteAdmin)
+    public function show(Employee $promoteAdmin)
     {
         return response()->json($promoteAdmin);
     }
 
     
-    public function update(Request $request, promoteAdmin $promoteAdmin)
+    public function update(Request $request, Employee $promoteAdmin)
     {
         $validatedData=$this->validateResource($request);
         $promoteAdmin->update($validatedData);
@@ -67,7 +67,7 @@ class PromoteAdminController extends Controller
     }
 
     
-    public function destroy(promoteAdmin $promoteAdmin)
+    public function destroy(Employee $promoteAdmin)
     {
         $promoteAdmin->delete();
         return response()->json(null, 204);
